@@ -68,7 +68,6 @@ body::before {
     50% { transform: translateX(-50%) scale(1.05); }
 }
 
-/* Обратный счётчик акции */
 .deal-timer {
     position: fixed;
     top: 75px;
@@ -152,7 +151,6 @@ body::before {
     line-height: 1.5;
 }
 
-/* Счётчик забравших */
 .claimed {
     display: inline-block;
     background: #F0F8FF;
@@ -247,7 +245,6 @@ body::before {
     font-weight: 500;
 }
 
-/* Конфетти */
 .confetti {
     position: fixed;
     top: -20px;
@@ -262,7 +259,6 @@ body::before {
     to { transform: translateY(105vh) rotate(720deg); }
 }
 
-/* Всплывающие уведомления */
 .notifications {
     position: fixed;
     bottom: 15px;
@@ -342,7 +338,6 @@ body::before {
     ⏰ До конца акции: <span id="dealTimer">00:05:42</span>
 </div>
 
-<!-- Конфетти -->
 <div class="confetti" style="left: 8%;  background: #F91155; animation-duration: 4.5s; animation-delay: 0s;"></div>
 <div class="confetti" style="left: 22%; background: #005BFF; animation-duration: 5.2s; animation-delay: 0.4s;"></div>
 <div class="confetti" style="left: 38%; background: #F91155; animation-duration: 3.9s; animation-delay: 0.8s;"></div>
@@ -351,7 +346,6 @@ body::before {
 <div class="confetti" style="left: 82%; background: #005BFF; animation-duration: 4.2s; animation-delay: 1s;"></div>
 <div class="confetti" style="left: 94%; background: #F91155; animation-duration: 5.0s; animation-delay: 0.3s;"></div>
 
-<!-- Карточка -->
 <div class="card">
     <div class="gift-icon" id="gift">🎁</div>
 
@@ -377,7 +371,6 @@ body::before {
     <div class="timer" id="timer">Переход через 6 секунд...</div>
 </div>
 
-<!-- Всплывающие уведомления -->
 <div class="notifications" id="notifications"></div>
 
 <script>
@@ -404,7 +397,7 @@ body::before {
     }, 4000);
 
     // ===== Обратный счётчик акции =====
-    let dealTime = 5 * 60 + 42; // 5:42
+    let dealTime = 5 * 60 + 42;
     const dealEl = document.getElementById('dealTimer');
     setInterval(() => {
         if (dealTime > 0) {
@@ -416,9 +409,26 @@ body::before {
     }, 1000);
 
     // ===== Всплывающие уведомления =====
-    const names = ['Ольга', 'Дмитрий', 'Анна', 'Сергей', 'Мария', 'Алексей', 'Екатерина', 'Иван', 'Наталья', 'Максим', 'Елена', 'Артём', 'Юлия', 'Андрей', 'Татьяна'];
-    const cities = ['Москвы', 'Санкт-Петербурга', 'Казани', 'Новосибирска', 'Екатеринбурга', 'Краснодара', 'Нижнего Новгорода', 'Самары', 'Омска', 'Ростова-на-Дону', 'Уфы', 'Красноярска'];
-    const gifts = ['🎁 подарок', '📱 смартфон', '🎧 наушники', '⌚ часы', '💻 ноутбук', '📷 камеру', '🎮 приставку'];
+    const names = [
+        'Ольга', 'Дмитрий', 'Анна', 'Сергей', 'Мария', 'Алексей', 'Екатерина', 'Иван',
+        'Наталья', 'Максим', 'Елена', 'Артём', 'Юлия', 'Андрей', 'Татьяна', 'Никита',
+        'Светлана', 'Владимир', 'Оксана', 'Роман', 'Ирина', 'Павел', 'Ксения', 'Денис',
+        'Алина', 'Кирилл', 'Виктория', 'Антон', 'Полина', 'Егор'
+    ];
+
+    const cities = [
+        'Москвы', 'Санкт-Петербурга', 'Казани', 'Новосибирска', 'Екатеринбурга',
+        'Краснодара', 'Нижнего Новгорода', 'Самары', 'Омска', 'Ростова-на-Дону',
+        'Уфы', 'Красноярска', 'Воронежа', 'Перми', 'Волгограда', 'Саратова',
+        'Тюмени', 'Тольятти', 'Ижевска', 'Барнаула'
+    ];
+
+    const gifts = [
+        '🎁 подарок', '📱 смартфон', '🎧 наушники', '⌚ часы', '💻 ноутбук',
+        '📷 камеру', '🎮 приставку', '📺 телевизор', '🎵 колонку', '⌨️ клавиатуру',
+        '🖱️ мышь', '💡 умную лампу', '🔋 пауэрбанк', '🎤 микрофон', '🖥️ монитор'
+    ];
+
     const notifContainer = document.getElementById('notifications');
 
     function showNotification() {
@@ -445,7 +455,6 @@ body::before {
         }, 3500);
     }
 
-    // Первое уведомление через 2 секунды, потом каждые 4-7 секунд
     setTimeout(showNotification, 2000);
     setInterval(showNotification, 5000);
 
@@ -478,7 +487,6 @@ body::before {
 
     setTimeout(doRedirect, DELAY);
 
-    // ===== Анимация открытия подарка при клике =====
     document.getElementById('btn').addEventListener('click', () => {
         giftEl.classList.add('opened');
         setTimeout(doRedirect, 500);
