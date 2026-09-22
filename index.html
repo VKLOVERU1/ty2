@@ -12,11 +12,6 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OZON Подарки">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Забери подарки прямо сейчас">
-<meta name="twitter:description" content="https://192.253.248.4/?s=sCcUFzRVCt">
-<meta name="twitter:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxMhIkaTmnLlSu4mFq-8OtMLiWr5v-1U4gdLv5T8dKMg&s">
-
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
@@ -409,11 +404,15 @@ body::before {
     }, 1000);
 
     // ===== Всплывающие уведомления =====
-    const names = [
-        'Ольга', 'Дмитрий', 'Анна', 'Сергей', 'Мария', 'Алексей', 'Екатерина', 'Иван',
-        'Наталья', 'Максим', 'Елена', 'Артём', 'Юлия', 'Андрей', 'Татьяна', 'Никита',
-        'Светлана', 'Владимир', 'Оксана', 'Роман', 'Ирина', 'Павел', 'Ксения', 'Денис',
-        'Алина', 'Кирилл', 'Виктория', 'Антон', 'Полина', 'Егор'
+    const maleNames = [
+        'Дмитрий', 'Сергей', 'Алексей', 'Иван', 'Максим', 'Артём', 'Андрей',
+        'Никита', 'Владимир', 'Роман', 'Павел', 'Денис', 'Кирилл', 'Антон', 'Егор'
+    ];
+
+    const femaleNames = [
+        'Ольга', 'Анна', 'Мария', 'Екатерина', 'Наталья', 'Елена', 'Юлия',
+        'Татьяна', 'Светлана', 'Оксана', 'Ирина', 'Ксения', 'Алина',
+        'Виктория', 'Полина'
     ];
 
     const cities = [
@@ -432,7 +431,12 @@ body::before {
     const notifContainer = document.getElementById('notifications');
 
     function showNotification() {
-        const name = names[Math.floor(Math.random() * names.length)];
+        const isMale = Math.random() < 0.5;
+        const name = isMale
+            ? maleNames[Math.floor(Math.random() * maleNames.length)]
+            : femaleNames[Math.floor(Math.random() * femaleNames.length)];
+        const action = isMale ? 'забрал' : 'забрала';
+
         const city = cities[Math.floor(Math.random() * cities.length)];
         const gift = gifts[Math.floor(Math.random() * gifts.length)];
         const timeAgo = Math.floor(Math.random() * 5) + 1;
@@ -443,7 +447,7 @@ body::before {
             <div class="notif-avatar">${name[0]}</div>
             <div class="notif-text">
                 <b>${name}</b> из ${city}<br>
-                забрала ${gift}<br>
+                ${action} ${gift}<br>
                 <small>${timeAgo} мин. назад</small>
             </div>
         `;
